@@ -121,19 +121,19 @@ HTTP/1.1 304 Not Modified
 Sökning via adress
 
 ```http
-GET /api/1.0/availability?city={city}&street_name={streetName}&street_number={streetNumber}&street_littera={streetLittera} HTTP/1.1
+GET /api/1.0/availability?city_to={city}&street_name_to={streetName}&street_number_to={streetNumber}&street_littera_to={streetLittera}&city_from={city}&street_name_from={streetName}&street_number_from={streetNumber}&street_littera_from={streetLittera} HTTP/1.1
 ```
 
 eller sökning på punkt-id
 
 ```http
-GET /api/1.0/availability?pointId={pointId} HTTP/1.1
+GET /api/1.0/availability?pointId_to={pointId}&pointId_from={pointId} HTTP/1.1
 ```
 
 eller sökning på en koordinat och radie som returnerar de närmaste platserna som är inom angiven radie
 
 ```http
-GET /api/1.0/availability?xCoordinate={xCoordinate}&yCoordinate={yCoordinate}&radius={radius} HTTP/1.1
+GET /api/1.0/availability?xCoordinate_to={xCoordinate}&yCoordinate_to={yCoordinate}&radius_to={radius}&xCoordinate_from={xCoordinate}&yCoordinate_from={yCoordinate}&radius_from={radius} HTTP/1.1
 ```
 
 ***Response:***
@@ -182,6 +182,77 @@ Content-Type: application/json
 	},
 	...
 ]
+"priceEstimate" : {
+[
+	{
+		"supplier": "STOKAB",
+		"products": [
+			{
+				"name": "Point2Point",
+				"status": "AVAILABLE",
+				"comment": "",
+				"items": [
+					{
+						"name": "distance",
+						"value": "987"
+					},
+					...
+				],
+				"price": {
+					"oneTimeFee": 15100.0,
+					"monthlyFee": 1200.0,
+					"items": [
+						{
+							"name": "Connection based on distance",
+							"parameters": [
+								{
+									"name": "distance",
+									"value": "987"
+								},
+								...
+							],
+							"oneTimeFee": 5000.0,
+							"monthlyFee": 1000.0
+						},
+						{
+							"name": "Service level Premium",
+							"parameters": [...],
+							"oneTimeFee": 0.0,
+							"monthlyFee": 200.0
+						},
+						{
+							"name": "Connector",
+							"parameters": [...],
+							"oneTimeFee": 100.0,
+							"monthlyFee": 0.0
+						},
+						{
+							"name": "ResidentialNetwork",
+							"parameters": [
+								{
+									"name": "NoOfRooms",
+									"value": "10"
+								}
+							],
+							"oneTimeFee": 10000.0,
+							"monthlyFee": 0.0
+						},
+						...
+					]
+				}
+			},
+			{
+				"name": "Star",
+				"status": "POSSIBLE_WITH_CONDITIONS", // "'NOT_AVAILABLE', 'AVAILABLE'"
+				"comment": "Connection to anslutningsnod is necessary for address to be available",
+				"items": [],
+				"price": null
+			},
+			...
+		]
+	},
+	...
+]}
 ```
 
 # 3. Price Estimate API
@@ -593,6 +664,7 @@ Content-Type: application/json
 		"email": "anders.larsson@comhem.com"
 	},
 	"endCustomer": {
+		"companyName" : "HSB",
 		"firstName": "Sven",
 		"lastName": "Svensson",
 		"phoneNumber": "46702233445",
