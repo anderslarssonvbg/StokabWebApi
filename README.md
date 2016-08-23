@@ -114,7 +114,7 @@ HTTP/1.1 304 Not Modified
 ```
 
 # 2. Availability API
-### Hämta detaljerad information och leverantörers fiberstatus på en specifik plats (adress), men kan också returnera mer än 1 plats om sökningen inte är tillräckligt specifik.
+### Hämta detaljerad information och leverantörers fiberstatus på en specifik plats (adress), men kan också returnera mer än 1 plats om sökningen inte är tillräckligt specifik.Från-adressen är inte ett krav men för att få fram PunktTillPunkt-träff måste båda adresser anges.
 
 ***Request:***
 
@@ -178,12 +178,9 @@ Content-Type: application/json
 	 	"relatedPointIds": [ // "list of other nearby points (addresses) which could be used instead of the searched point (address)"
 			"CDE678",
 			"CDE901"
-		]
-	},
-	...
-]
-"priceEstimate" : {
-[
+		],
+		"priceEstimate" : {
+
 	{
 		"supplier": "STOKAB",
 		"products": [
@@ -251,8 +248,10 @@ Content-Type: application/json
 			...
 		]
 	},
+	},
 	...
-]}
+]
+}
 ```
 
 # 3. Price Estimate API
@@ -728,6 +727,7 @@ Content-Type: application/json
 		"email": "anders.larsson@comhem.com"
 	},
 	"endCustomer": {
+		"companyName": "HSB",
 		"firstName": "Sven",
 		"lastName": "Svensson",
 		"phoneNumber": "46702233445",
