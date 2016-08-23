@@ -264,11 +264,11 @@ POST /api/1.0/priceEstimates HTTP/1.1
 Content-Type: application/json
 
 {
-	"from": {
+	"from": { // "may be set to null if any product only requires one point (address)"
 		"pointId": "ABC123",
 		"comment": "", // "if an additional comment for the from point could be useful for the supplier"
 	},
-	"to": { // "may be set to null if any product only requires one point (address)"
+	"to": { 
 		"pointId": "ABC789", 
 		"comment": "", // "if an additional comment for the to point could be useful for the supplier"
 	},
