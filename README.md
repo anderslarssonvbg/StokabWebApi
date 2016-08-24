@@ -652,7 +652,7 @@ Content-Type: application/json
 ]
 ```
 # 6. Invoice Group
-### Hämta fakturamottagare
+### Hämta alla faktura mottagare för specifik kund
 
 ***Request:***
 
@@ -661,8 +661,9 @@ GET /api/1.0/invoiceGroup HTTP/1.1
 ```
 
 ***Response:***
+
+```http
 HTTP/1.1 200 OK
-Last-Modified: Sun, 10 Jan 2016 12:03:28 GMT
 Content-Type: application/json
 [
 	{
