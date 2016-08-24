@@ -657,9 +657,13 @@ Content-Type: application/json
 ***Request:***
 
 ```http
-POST /api/1.0/invoiceGroup HTTP/1.1
-Content-Type: application/json
+GET /api/1.0/invoiceGroup HTTP/1.1
+```
 
+
+
+***Response:***
+Content-Type: application/json
 [
 	{
 		"name": "ComHem",
