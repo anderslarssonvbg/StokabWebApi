@@ -651,3 +651,19 @@ Content-Type: application/json
 	...
 ]
 ```
+# 6. Invoice Group
+### Hämta fakturamottagare
+
+***Request:***
+
+```http
+POST /api/1.0/invoiceGroup HTTP/1.1
+Content-Type: application/json
+
+[
+	{
+		"name": "ComHem",
+		"customerNumber": "9834"
+	},
+	...
+]
