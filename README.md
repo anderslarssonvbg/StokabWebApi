@@ -660,9 +660,9 @@ Content-Type: application/json
 GET /api/1.0/invoiceGroup HTTP/1.1
 ```
 
-
-
 ***Response:***
+HTTP/1.1 200 OK
+Last-Modified: Sun, 10 Jan 2016 12:03:28 GMT
 Content-Type: application/json
 [
 	{
