@@ -113,148 +113,8 @@ Om det inte finns uppdaterade poster ser svaret istället ut så här:
 HTTP/1.1 304 Not Modified
 ```
 
-# 2. Availability API
-### Hämta detaljerad information och leverantörers fiberstatus på en specifik plats (adress), men kan också returnera mer än 1 plats om sökningen inte är tillräckligt specifik.Från-adressen är inte ett krav men för att få fram PunktTillPunkt-träff måste båda adresser anges.
 
-***Request:***
-
-Sökning via adress
-
-```http
-GET /api/1.0/availability?city_to={city}&street_name_to={streetName}&street_number_to={streetNumber}&street_littera_to={streetLittera}&city_from={city}&street_name_from={streetName}&street_number_from={streetNumber}&street_littera_from={streetLittera} HTTP/1.1
-```
-
-eller sökning på punkt-id
-
-```http
-GET /api/1.0/availability?pointId_to={pointId}&pointId_from={pointId} HTTP/1.1
-```
-
-eller sökning på en koordinat och radie som returnerar de närmaste platserna som är inom angiven radie
-
-```http
-GET /api/1.0/availability?xCoordinate_to={xCoordinate}&yCoordinate_to={yCoordinate}&radius_to={radius}&xCoordinate_from={xCoordinate}&yCoordinate_from={yCoordinate}&radius_from={radius} HTTP/1.1
-```
-
-***Response:***
-
-```http
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-[
-	{
-		"pointId": "ABC123",
-		"address": {
-			"street": "Testvägen",
-			"number": "100",
-			"littera": "",
-			"postalCode": "10000",
-			"city": "Ankeborg",
-			"countryCode": "SE"
-		},
-		"building": {
-			"distinguisher": "", // "set if something is needed to distinguish a specific building on the address"
-			"type": "MDU" // "'MDU' = apartment building, 'SDU' = villa"
-		},
-		"realEstate": {
-			"label": "PENGABINGEN 1",
-			"municipality": "ANKEBORG"
-		},
-		"coordinate": {
-			"latitude": 6581619.085,
-			"longitude": 1628539.32,
-			"projection": "WGS84"
-		},
-		"district": "GAMLA STAN",
-		"suppliers": [
-			{
-				"name": "STOKAB",
-				"fiberStatus": "IN_REAL_ESTATE", // "'AT_ADDRESS', 'AT_SITE_BOUNDARY'"
-				"statusValidationRequired": true // "indicates if the fiberStatus needs manual validation to assure availability"
-			},
-			...
-		],
-	 	"relatedPointIds": [ // "list of other nearby points (addresses) which could be used instead of the searched point (address)"
-			"CDE678",
-			"CDE901"
-		],
-		"priceEstimate" : {
-
-	{
-		"supplier": "STOKAB",
-		"products": [
-			{
-				"name": "Point2Point",
-				"status": "AVAILABLE",
-				"comment": "",
-				"items": [
-					{
-						"name": "distance",
-						"value": "987"
-					},
-					...
-				],
-				"price": {
-					"oneTimeFee": 15100.0,
-					"monthlyFee": 1200.0,
-					"items": [
-						{
-							"name": "Connection based on distance",
-							"parameters": [
-								{
-									"name": "distance",
-									"value": "987"
-								},
-								...
-							],
-							"oneTimeFee": 5000.0,
-							"monthlyFee": 1000.0
-						},
-						{
-							"name": "Service level Premium",
-							"parameters": [...],
-							"oneTimeFee": 0.0,
-							"monthlyFee": 200.0
-						},
-						{
-							"name": "Connector",
-							"parameters": [...],
-							"oneTimeFee": 100.0,
-							"monthlyFee": 0.0
-						},
-						{
-							"name": "ResidentialNetwork",
-							"parameters": [
-								{
-									"name": "NoOfRooms",
-									"value": "10"
-								}
-							],
-							"oneTimeFee": 10000.0,
-							"monthlyFee": 0.0
-						},
-						...
-					]
-				}
-			},
-			{
-				"name": "Star",
-				"status": "POSSIBLE_WITH_CONDITIONS", // "'NOT_AVAILABLE', 'AVAILABLE'"
-				"comment": "Connection to anslutningsnod is necessary for address to be available",
-				"items": [],
-				"price": null
-			},
-			...
-		]
-	},
-	},
-	...
-]
-}
-```
-
-# 3. Price Estimate API
+# 2. Price Estimate API
 ### Hämta prisuppskattning på en förbindelse
 
 ***Request:***
@@ -264,45 +124,43 @@ POST /api/1.0/priceEstimates HTTP/1.1
 Content-Type: application/json
 
 {
-	"from": { // "may be set to null if any product only requires one point (address)"
-		"pointId": "ABC123",
+	"from": { 
+		"address": { /*"may be set to null if any product only requires one point (address). E.g. PointToPoint"*/
+			"city" : "Stockholm",
+			"streetName": "Drottninggatan",
+			"streetNumber": "52",
+			"streetLittera": "A"
+		},
 		"comment": "", // "if an additional comment for the from point could be useful for the supplier"
 	},
 	"to": { 
-		"pointId": "ABC789", 
+		"address": {
+			"city" : "Stockholm",
+			"streetName": "Drottninggatan",
+			"streetNumber": "68",
+			"streetLittera": "A"
+		}, 
 		"comment": "", // "if an additional comment for the to point could be useful for the supplier"
 	},
-	"redundancy": { // "may be set to null if no redundancy is wanted"
+	"redundancy": { /* Will not be implemented by Innofactor */
 		"type": "Full", // "'Normal', 'Full'"
-		"toPointId": "CBA123"
+		"toPointId": "" /* May be set to null */
 	},
 	"customerType": "Commercial", // "e.g. 'Commercial', 'Residential'"
 	"serviceLevel": "Premium", // "e.g. 'Base', 'Gold', 'Premium'"
 	"products": [
 		"All" // "e.g. 'All', 'Point2Point', 'Star'"
 	],
-	"parameters": [
+	"parameters": [ /* Will not be implemented by Innofactor */
 		{
 			"name": "ConnectorType",
 			"value": "SC/APC"
 		},
 		...
+	]
 	],
-	"subProducts": [
-		{
-			"name": "ResidentialNetwork",
-			"parameters": [
-				{
-					"name": "NoOfRooms",
-					"value": "10"
-				},
-				...
-			]
-		},
-		...
-	],
-	"contractPeriodMonths": 12,
-	"noOfFibers": 1 // "number of wanted fiber pairs (or single fibers depending on product)"
+	"contractPeriodMonths": 12, /* Allan: input tack. */
+	"noOfFibers": 1 // "number of wanted fiber pairs (or single fibers depending on product /* Allan: input tack. */
 }
 ```
 
@@ -317,6 +175,7 @@ Content-Type: application/json
 		"supplier": "STOKAB",
 		"products": [
 			{
+				"productId" : "8u3-3563-3635-365-ff",
 				"name": "Point2Point",
 				"status": "AVAILABLE",
 				"comment": "",
@@ -371,6 +230,7 @@ Content-Type: application/json
 				}
 			},
 			{
+				"productId": "87sg-098dsaf-098sudg-098gf",
 				"name": "Star",
 				"status": "POSSIBLE_WITH_CONDITIONS", // "'NOT_AVAILABLE', 'AVAILABLE'"
 				"comment": "Connection to anslutningsnod is necessary for address to be available",
@@ -384,7 +244,7 @@ Content-Type: application/json
 ]
 ```
 
-# 4. Offer Inquiry API
+# 3. Offer Inquiry API
 ### Skicka en offert-förfrågan för en förbindelse av en specifik produkt från en specifik leverantör
 
 ***Request:***
@@ -395,23 +255,32 @@ Content-Type: application/json
 
 {
 	"supplier": "STOKAB",
-	"product": "Point2Point", // "e.g. 'Point2Point', 'Star'"
+	"productId": "98j35-f4fewf-fwef-f444", // "e.g. 'Point2Point', 'Star'"
 	"referenceId": "CH-12345", // "client own reference for this inquiry, could be empty"
 	"from": {
-		"pointId": "ABC123",
+		"address": { /*"may be set to null if any product only requires one point (address). E.g. Point2Point"*/
+			"city" : "Stockholm",
+			"streetName": "Drottninggatan",
+			"streetNumber": "52",
+			"streetLittera": "A"
+		},
 		"comment": "", // "if an additional comment for the from point could be useful for the supplier"
 	},
-	"to": { // "may be set to null if any product only requires one point (address)"
-		"pointId": "ABC789", 
+	"to": { "address": { 
+			"city" : "Stockholm",
+			"streetName": "Drottninggatan",
+			"streetNumber": "68",
+			"streetLittera": "A"
+		}, 
 		"comment": "", // "if an additional comment for the to point could be useful for the supplier"
 	},
-	"redundancy": { // "may be set to null if no redundancy is wanted"
+	"redundancy": {  /* Will not be implemented by Innofactor */
 		"type": "Full", // "'Normal', 'Full'"
 		"toPointId": "CBA123"
 	},
 	"customerType": "Commercial", // "e.g. 'Commercial', 'Residential'"
 	"serviceLevel": "Premium", // "e.g. 'Base', 'Gold', 'Premium'"
-	"parameters": [
+	"parameters": [  /* Will not be implemented by Innofactor */
 		{
 			"name": "ConnectorType",
 			"value": "SC/APC"
@@ -419,17 +288,8 @@ Content-Type: application/json
 		...
 	],
 	"subProducts": [
-		{
-			"name": "ResidentialNetwork",
-			"parameters": [
-				{
-					"name": "NoOfRooms",
-					"value": "10"
-				},
-				...
-			]
-		},
-		...
+		"35h34-3t-43b44-y",
+		"44hg4h-4hy4h4yh-h45yt4h"
 	],
 	"contractPeriodMonths": 12,
 	"noOfFibers": 1, // "number of wanted fiber pairs (or single fibers depending on product)"
@@ -459,6 +319,7 @@ Content-Type: application/json
 	"connectionId": "", // "may be set to the identifier for the connection if that is already generated when inquiry is answered"
 	"deliveryDurationDays": 20, // "days from order to delivered connection"
 	"product": {
+		"productId": "98s7gf-098sfg-09sug",
 		"name": "Point2Point",
 		"status": "AVAILABLE",
 		"comment": "",
@@ -473,7 +334,7 @@ Content-Type: application/json
 			"status": "ESTIMATED", // "'ESTIMATED', 'OFFER'. Estimated price can be delivered in synchronous answer and then be overridden by an offer in an asynchronous answer"
 			"oneTimeFee": 15100.0,
 			"monthlyFee": 1200.0,
-			"items": [
+			"items": [ /* Allan, vad är detta? */
 				{
 					"name": "Connection based on distance",
 					"parameters": [
@@ -511,7 +372,12 @@ Content-Type: application/json
 				},
 				...
 			]
+			
 		}
+	},
+	"subProducts": {
+		"productId": "87sagf-087sagf-098s7fg-9sg",
+		"name": "awesomeProduct"
 	}
 }
 ```
@@ -545,6 +411,7 @@ Content-Type: application/json
 	"connectionId": "",
 	"deliveryDurationDays": 20,
 	"product": {
+		"productId": "97dsg-098sfg-09sfg-0i35g",
 		"name": "Point2Point",
 		"status": "AVAILABLE",
 		"comment": "",
@@ -598,7 +465,12 @@ Content-Type: application/json
 				...
 			]
 		}
-	}
+	},
+	"subProducts": [
+		{
+			"productId": "oijsagf0-08afd-098uafd",
+			"name": "aname"
+	]
 }
 ```
 
