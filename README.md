@@ -16,7 +16,6 @@ Content-Type: application/json
 
 [
 	{
-		"pointId": "ABC123",
 		"address": {
 			"street": "Testvägen",
 			"number": "100",
