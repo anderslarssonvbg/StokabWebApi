@@ -157,7 +157,6 @@ Content-Type: application/json
 			"value": "SC/APC"
 		},
 		...
-	]
 	],
 	"contractPeriodMonths": 12, /* Allan: input tack. */
 	"noOfFibers": 1 // "number of wanted fiber pairs (or single fibers depending on product /* Allan: input tack. */
