@@ -45,7 +45,7 @@ Content-Type: application/json
 				"statusValidationRequired": true // "indicates if the fiberStatus needs manual validation to assure availability"
 			}
 		],
- 		"relatedPointIds": [ /* "Will not be implemented by Innofactor." */
+ 		"relatedPointIds": [
 			"CDE678",
 			"CDE901"
 		]
@@ -53,7 +53,7 @@ Content-Type: application/json
 	...
 ]
 ```
-~~
+
 ## Begränsningsmekanism
 
 För att bara få inkrementella uppdateringar av adresser så används If-Modified-Since. På det viset kan anropet ske ofta men fortfarande vara billigt.
@@ -110,8 +110,7 @@ Om det inte finns uppdaterade poster ser svaret istället ut så här:
 
 ```http
 HTTP/1.1 304 Not Modified
-```~~
-
+```
 
 # 2. Price Estimate API
 ### Hämta prisuppskattning på en förbindelse
@@ -128,7 +127,8 @@ Content-Type: application/json
 			"city" : "Stockholm",
 			"streetName": "Drottninggatan",
 			"streetNumber": "52",
-			"streetLittera": "A"
+			"streetLittera": "A",
+			"postalCode": "18273"
 		}
 	},
 	"to": { 
@@ -136,10 +136,11 @@ Content-Type: application/json
 			"city" : "Stockholm",
 			"streetName": "Drottninggatan",
 			"streetNumber": "68",
-			"streetLittera": "A"
+			"streetLittera": "A",
+			"postalCode": "18273"
 		}
 	},
-	"redundancy": { /* "Will not be implemented by Innofactor" */
+	"redundancy": {
 		"type": "Full", /* "'Normal', 'Full'" */
 		"toPointId": "" /* May be set to null */
 	},
@@ -155,7 +156,7 @@ Content-Type: application/json
 		},
 		...
 	],
-	"contractPeriodMonths": 12, /* Allan: input tack. */
+	"contractPeriodMonths": 12, /* "1, 3 or 5 years (in months)." */
 	"noOfFibers": 1 // "number of wanted fiber pairs (or single fibers depending on product /* "Allan: input tack." */
 }
 ```
@@ -175,17 +176,28 @@ Content-Type: application/json
 				"name": "Point2Point",
 				"status": "AVAILABLE",
 				"comment": "",
-				"items": [
+				"items": [ /* "Will return empty array for now" */
 					{
 						"name": "distance",
 						"value": "987"
 					},
 					...
 				],
+				"subProducts": [ /* "Will be related to the product" */
+					{
+						"productId": "08y3gt4-g-gt54-i",
+						"name": "a suiting name",
+						"price": {
+							"oneTimeFee": 1100.0,
+							"monthlyFee": 100.0
+						}
+					},
+					...
+				],
 				"price": {
 					"oneTimeFee": 15100.0,
 					"monthlyFee": 1200.0,
-					"items": [
+					"items": [ /* "Will return empty array for now" */
 						{
 							"name": "Connection based on distance",
 							"parameters": [
@@ -231,17 +243,11 @@ Content-Type: application/json
 				"status": "POSSIBLE_WITH_CONDITIONS", // "'NOT_AVAILABLE', 'AVAILABLE'"
 				"comment": "Connection to anslutningsnod is necessary for address to be available",
 				"items": [],
+				"subProducts": [],
 				"price": null
 			},
 			...
 		],
-		"subProducts": [
-			{
-				"productId": "08y3gt4-g-gt54-i",
-				"name": "a suiting name"
-			},
-			...
-		]
 	},
 	...
 ]
@@ -266,17 +272,19 @@ Content-Type: application/json
 			"streetName": "Drottninggatan",
 			"streetNumber": "52",
 			"streetLittera": "A"
+			"postalCode": "12398"
 		}
 	},
 	"to": { "address": { 
 			"city" : "Stockholm",
 			"streetName": "Drottninggatan",
 			"streetNumber": "68",
-			"streetLittera": "A"
+			"streetLittera": "A",
+			"postalCode": "12383
 		}
 	},
-	"redundancy": {  /* "Will not be implemented by Innofactor" */
-		"type": "Full", // "'Normal', 'Full'"
+	"redundancy": {
+		"type": "Full", /* "'Normal', 'Full'" */
 		"toPointId": "CBA123"
 	},
 	"customerType": "Commercial", /* "e.g. 'Commercial', 'Residential'" */
@@ -311,7 +319,7 @@ Content-Type: application/json
 	"referenceId": "CH-12345",
 	"status": {
 		"state": "WAIT_ASYNC_ANSWER", /* "'DONE_SUCCESS', 'DONE_FAILED', 'DONE_ASYNC_ANSWER_SUCCESS', 'DONE_ASYNC_ANSWER_FAILED'" */
-		"message": "", /* "Allan? */
+		"message": "",
 		"createDateTime": "2016-08-21T08:01:06.000Z",
 		"doneDateTime": "2016-08-22T10:15:01.000Z", /* "should be null if not yet done" */
 	},
@@ -324,18 +332,26 @@ Content-Type: application/json
 		"name": "Point2Point",
 		"status": "AVAILABLE",
 		"comment": "",
-		"items": [
+		"items": [ /* "Will return empty array for now" */
 			{
 				"name": "distance",
 				"value": "987"
 			},
 			...
 		],
+		"subProducts": [
+			"productId": "87sagf-087sagf-098s7fg-9sg",
+			"name": "awesomeProduct",
+			"price": {
+				"oneTimeFee": "1287.99",
+				"monthlyFee": "283.00"
+			}
+		],
 		"price": {
 			"status": "ESTIMATED", /* "'ESTIMATED', 'OFFER'. Estimated price can be delivered in synchronous answer and then be overridden by an offer in an asynchronous answer" */
 			"oneTimeFee": 15100.0,
 			"monthlyFee": 1200.0,
-			"items": [ /* "Allan, vad är detta?" */
+			"items": [ /* "Will return empty array for now" */
 				{
 					"name": "Connection based on distance",
 					"parameters": [
@@ -375,10 +391,6 @@ Content-Type: application/json
 			]
 			
 		}
-	},
-	"subProducts": {
-		"productId": "87sagf-087sagf-098s7fg-9sg",
-		"name": "awesomeProduct"
 	}
 }
 ```
@@ -416,18 +428,26 @@ Content-Type: application/json
 		"name": "Point2Point",
 		"status": "AVAILABLE",
 		"comment": "",
-		"items": [
+		"items": [ /* "Will return empty array for now" */
 			{
 				"name": "distance",
 				"value": "1046"
 			},
 			...
 		],
+		"subProducts": [
+			"productId": "87sagf-087sagf-098s7fg-9sg",
+			"name": "awesomeProduct",
+			"price": {
+				"oneTimeFee": "1287.99",
+				"monthlyFee": "283.00"
+			}
+		],
 		"price": {
 			"status": "OFFER",
 			"oneTimeFee": 15100.0,
 			"monthlyFee": 1500.0,
-			"items": [
+			"items": [ /* "Will return empty array for now" */
 				{
 					"name": "Connection based on distance",
 					"parameters": [
@@ -466,12 +486,7 @@ Content-Type: application/json
 				...
 			]
 		}
-	},
-	"subProducts": [
-		{
-			"productId": "oijsagf0-08afd-098uafd",
-			"name": "aname"
-	]
+	}
 }
 ```
 
@@ -669,7 +684,8 @@ Content-Type: application/json
 [
 	{
 		"name": "ComHem",
-		"customerNumber": "9834"
+		"invoiceGroup": "9834",
+		"otherField": "Will be named later"
 	},
 	...
 ]
