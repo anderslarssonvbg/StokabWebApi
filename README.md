@@ -652,7 +652,7 @@ Content-Type: application/json
 ]
 ```
 # 6. Invoice Group
-### Hämta alla faktura mottagare för specifik kund
+### Hämta alla fakturamottagare för specifik kund
 
 ***Request:***
 
