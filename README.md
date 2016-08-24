@@ -130,8 +130,7 @@ Content-Type: application/json
 			"streetName": "Drottninggatan",
 			"streetNumber": "52",
 			"streetLittera": "A"
-		},
-		"comment": "", // "if an additional comment for the from point could be useful for the supplier"
+		}
 	},
 	"to": { 
 		"address": {
@@ -139,8 +138,7 @@ Content-Type: application/json
 			"streetName": "Drottninggatan",
 			"streetNumber": "68",
 			"streetLittera": "A"
-		}, 
-		"comment": "", // "if an additional comment for the to point could be useful for the supplier"
+		}
 	},
 	"redundancy": { /* Will not be implemented by Innofactor */
 		"type": "Full", // "'Normal', 'Full'"
