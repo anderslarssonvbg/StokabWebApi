@@ -45,7 +45,7 @@ Content-Type: application/json
 				"statusValidationRequired": true // "indicates if the fiberStatus needs manual validation to assure availability"
 			}
 		],
- 		"relatedPointIds": [ // Will not be implemented by Innofactor.
+ 		"relatedPointIds": [ /* "Will not be implemented by Innofactor." */
 			"CDE678",
 			"CDE901"
 		]
@@ -53,7 +53,7 @@ Content-Type: application/json
 	...
 ]
 ```
-
+~~
 ## Begränsningsmekanism
 
 För att bara få inkrementella uppdateringar av adresser så används If-Modified-Since. På det viset kan anropet ske ofta men fortfarande vara billigt.
@@ -110,7 +110,7 @@ Om det inte finns uppdaterade poster ser svaret istället ut så här:
 
 ```http
 HTTP/1.1 304 Not Modified
-```
+```~~
 
 
 # 2. Price Estimate API
@@ -139,16 +139,16 @@ Content-Type: application/json
 			"streetLittera": "A"
 		}
 	},
-	"redundancy": { /* Will not be implemented by Innofactor */
-		"type": "Full", // "'Normal', 'Full'"
+	"redundancy": { /* "Will not be implemented by Innofactor" */
+		"type": "Full", /* "'Normal', 'Full'" */
 		"toPointId": "" /* May be set to null */
 	},
-	"customerType": "Commercial", // "e.g. 'Commercial', 'Residential'"
-	"serviceLevel": "Premium", // "e.g. 'Base', 'Gold', 'Premium'"
-	"products": [
-		"All" // "e.g. 'All', 'Point2Point', 'Star'"
+	"customerType": "Commercial", /* "e.g. 'Commercial', 'Residential'" */
+	"serviceLevel": "Premium", /* "e.g. 'Base', 'Gold', 'Premium'" */
+	"productTypes": [
+		"All" /* "e.g. 'All', 'Point2Point', 'Star'" */
 	],
-	"parameters": [ /* Will not be implemented by Innofactor */
+	"parameters": [ /* "Will not be implemented by Innofactor" */
 		{
 			"name": "ConnectorType",
 			"value": "SC/APC"
@@ -156,7 +156,7 @@ Content-Type: application/json
 		...
 	],
 	"contractPeriodMonths": 12, /* Allan: input tack. */
-	"noOfFibers": 1 // "number of wanted fiber pairs (or single fibers depending on product /* Allan: input tack. */
+	"noOfFibers": 1 // "number of wanted fiber pairs (or single fibers depending on product /* "Allan: input tack." */
 }
 ```
 
@@ -234,6 +234,13 @@ Content-Type: application/json
 				"price": null
 			},
 			...
+		],
+		"subProducts": [
+			{
+				"productId": "08y3gt4-g-gt54-i",
+				"name": "a suiting name"
+			},
+			...
 		]
 	},
 	...
@@ -246,37 +253,35 @@ Content-Type: application/json
 ***Request:***
 
 ```http
-POST /api/1.0/inquiries HTTP/1.1
+POST /api/1.0/offerInquiry HTTP/1.1
 Content-Type: application/json
 
 {
 	"supplier": "STOKAB",
-	"productId": "98j35-f4fewf-fwef-f444", // "e.g. 'Point2Point', 'Star'"
-	"referenceId": "CH-12345", // "client own reference for this inquiry, could be empty"
+	"productId": "98j35-f4fewf-fwef-f444", /* "e.g. 'Point2Point', 'Star'" */
+	"referenceId": "CH-12345", /* "client own reference for this inquiry, could be empty" */
 	"from": {
 		"address": { /*"may be set to null if any product only requires one point (address). E.g. Point2Point"*/
 			"city" : "Stockholm",
 			"streetName": "Drottninggatan",
 			"streetNumber": "52",
 			"streetLittera": "A"
-		},
-		"comment": "", // "if an additional comment for the from point could be useful for the supplier"
+		}
 	},
 	"to": { "address": { 
 			"city" : "Stockholm",
 			"streetName": "Drottninggatan",
 			"streetNumber": "68",
 			"streetLittera": "A"
-		}, 
-		"comment": "", // "if an additional comment for the to point could be useful for the supplier"
+		}
 	},
-	"redundancy": {  /* Will not be implemented by Innofactor */
+	"redundancy": {  /* "Will not be implemented by Innofactor" */
 		"type": "Full", // "'Normal', 'Full'"
 		"toPointId": "CBA123"
 	},
-	"customerType": "Commercial", // "e.g. 'Commercial', 'Residential'"
-	"serviceLevel": "Premium", // "e.g. 'Base', 'Gold', 'Premium'"
-	"parameters": [  /* Will not be implemented by Innofactor */
+	"customerType": "Commercial", /* "e.g. 'Commercial', 'Residential'" */
+	"serviceLevel": "Premium", /* "e.g. 'Base', 'Gold', 'Premium'" */
+	"parameters": [  /* "Will not be implemented by Innofactor" */
 		{
 			"name": "ConnectorType",
 			"value": "SC/APC"
@@ -288,8 +293,8 @@ Content-Type: application/json
 		"44hg4h-4hy4h4yh-h45yt4h"
 	],
 	"contractPeriodMonths": 12,
-	"noOfFibers": 1, // "number of wanted fiber pairs (or single fibers depending on product)"
-	"asyncAnswerAllowed": true // "if asychronous answer is ok (might result in an extra charge if manual)"
+	"noOfFibers": 1, /* "number of wanted fiber pairs (or single fibers depending on product)" */
+	"asyncAnswerAllowed": true /* "if asychronous answer is ok (might result in an extra charge if manual)" */
 }
 ```
 
@@ -305,15 +310,15 @@ Content-Type: application/json
 	"inquiryId": "ec4bc754-6a30-11e2-a585-4fc569183061",
 	"referenceId": "CH-12345",
 	"status": {
-		"state": "WAIT_ASYNC_ANSWER", // "'DONE_SUCCESS', 'DONE_FAILED', 'DONE_ASYNC_ANSWER_SUCCESS', 'DONE_ASYNC_ANSWER_FAILED'"
-		"message": "",
+		"state": "WAIT_ASYNC_ANSWER", /* "'DONE_SUCCESS', 'DONE_FAILED', 'DONE_ASYNC_ANSWER_SUCCESS', 'DONE_ASYNC_ANSWER_FAILED'" */
+		"message": "", /* "Allan? */
 		"createDateTime": "2016-08-21T08:01:06.000Z",
-		"doneDateTime": "2016-08-22T10:15:01.000Z", // "should be null if not yet done"
+		"doneDateTime": "2016-08-22T10:15:01.000Z", /* "should be null if not yet done" */
 	},
 	"supplier": "STOKAB",
 	"offerValidUntilDate": "2016-01-31",
-	"connectionId": "", // "may be set to the identifier for the connection if that is already generated when inquiry is answered"
-	"deliveryDurationDays": 20, // "days from order to delivered connection"
+	"connectionId": "", /* "may be set to the identifier for the connection if that is already generated when inquiry is answered" */
+	"deliveryDurationDays": 20, /* "days from order to delivered connection" */
 	"product": {
 		"productId": "98s7gf-098sfg-09sug",
 		"name": "Point2Point",
@@ -327,10 +332,10 @@ Content-Type: application/json
 			...
 		],
 		"price": {
-			"status": "ESTIMATED", // "'ESTIMATED', 'OFFER'. Estimated price can be delivered in synchronous answer and then be overridden by an offer in an asynchronous answer"
+			"status": "ESTIMATED", /* "'ESTIMATED', 'OFFER'. Estimated price can be delivered in synchronous answer and then be overridden by an offer in an asynchronous answer" */
 			"oneTimeFee": 15100.0,
 			"monthlyFee": 1200.0,
-			"items": [ /* Allan, vad är detta? */
+			"items": [ /* "Allan, vad är detta?" */
 				{
 					"name": "Connection based on distance",
 					"parameters": [
@@ -400,7 +405,7 @@ Content-Type: application/json
 		"state": "DONE_ASYNC_ANSWER_SUCCESS",
 		"message": "",
 		"createDateTime": "2016-08-21T08:01:06.000Z",
-		"doneDateTime": "2016-08-22T10:15:01.000Z", // "should be null if not yet done"
+		"doneDateTime": "2016-08-22T10:15:01.000Z", /* "should be null if not yet done" */
 	},
 	"supplier": "STOKAB",
 	"offerValidUntilDate": "2016-01-31",
@@ -583,7 +588,7 @@ Content-Type: application/json
 	"supplier": "STOKAB",
 	"product": "Point2Point",
 	"status": {
-		"state": "DELIVERED", // "ORDERED", "DELIVERED", "REJECTED"
+		"state": "DELIVERED", /* "ORDERED", "DELIVERED", "REJECTED" */
 		"message": "",
 		"orderDateTime": "2015-01-11T11:34:00.000Z",
 		"doneDateTime": "2015-02-15T14:49:12.000Z"
