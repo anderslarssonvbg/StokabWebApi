@@ -13,7 +13,8 @@ GET /api/1.0/feasibility HTTP/1.1
 HTTP/1.1 200 OK
 Last-Modified: Sun, 10 Jan 2016 12:03:28 GMT
 Content-Type: application/json
-
+´´´
+´´´javascript
 [
 	{
 		"address": {
@@ -63,7 +64,8 @@ Content-Type: application/json
 ```http
 POST /api/1.0/priceEstimates HTTP/1.1
 Content-Type: application/json
-
+´´´
+´´´javascript
 {
 	"from": { 
 		"address": { /*"may be set to null if any product only requires one point (address). E.g. PointToPoint"*/
@@ -109,7 +111,8 @@ Content-Type: application/json
 ```http
 HTTP/1.1 200 OK
 Content-Type: application/json
-
+´´´
+´´´javascript
 [
 	{
 		"supplier": "STOKAB",
@@ -204,7 +207,8 @@ Content-Type: application/json
 ```http
 POST /api/1.0/offerInquiry HTTP/1.1
 Content-Type: application/json
-
+´´´
+´´´javascript
 {
 	"supplier": "STOKAB",
 	"productId": "98j35-f4fewf-fwef-f444", /* "e.g. 'Point2Point', 'Star'" */
@@ -256,7 +260,8 @@ HTTP/1.1 201 CREATED
 Last-Modified: Mon, 11 Jan 2015 12:03:28 GMT
 Location: /api/1.0/inquiries/ec4bc754-6a30-11e2-a585-4fc569183061
 Content-Type: application/json
-
+´´´
+´´´javascript
 {
 	"inquiryId": "ec4bc754-6a30-11e2-a585-4fc569183061",
 	"referenceId": "CH-12345",
@@ -352,7 +357,8 @@ GET /api/1.0/inquiries/ec4bc754-6a30-11e2-a585-4fc569183061 HTTP/1.1
 HTTP/1.1 200 OK
 Last-Modified: Mon, 11 Jan 2015 12:03:28 GMT
 Content-Type: application/json
-
+´´´
+´´´javascript
 {
 	"inquiryId": "ec4bc754-6a30-11e2-a585-4fc569183061",
 	"referenceId": "CH-12345",
@@ -460,7 +466,8 @@ GET /api/1.0/inquiries?since=2016-08-22T15:01:02.000Z
 ```http
 HTTP/1.1 200 OK
 Content-Type: application/json
-
+´´´
+´´´javascript
 [
 	{
 		"inquiryId": "ec4bc754-6a30-11e2-a585-4fc569183061",
@@ -484,7 +491,8 @@ Content-Type: application/json
 ```http
 POST /api/1.0/orders HTTP/1.1
 Content-Type: application/json
-
+´´´
+´´´javascript
 {
 	"inquiryId": "ec4bc754-6a30-11e2-a585-4fc569183061",
 	"responsiblePerson": {
@@ -511,7 +519,8 @@ HTTP/1.1 201 CREATED
 Last-Modified: Mon, 11 Jan 2015 12:05:28 GMT
 Location: /api/1.0/orders/fc6cd754-6a30-11e2-a585-4fc569185689
 Content-Type: application/json
-
+´´´
+´´´javascript
 {
 	"orderId": "fc6cd754-6a30-11e2-a585-4fc569185689",
 	"inquiryId": "ec4bc754-6a30-11e2-a585-4fc569183061",
@@ -539,7 +548,8 @@ GET /api/1.0/orders/fc6cd754-6a30-11e2-a585-4fc569185689 HTTP/1.1
 HTTP/1.1 200 OK
 Last-Modified: Tue, 15 Feb 2015 15:12:53 GMT
 Content-Type: application/json
-
+´´´
+´´´javascript
 {
 	"orderId": "fc6cd754-6a30-11e2-a585-4fc569185689",
 	"inquiryId": "ec4bc754-6a30-11e2-a585-4fc569183061",
@@ -595,7 +605,8 @@ GET /api/1.0/orders?since=2016-08-22T10:09:23.000Z
 ```http
 HTTP/1.1 200 OK
 Content-Type: application/json
-
+´´´
+´´´javascript
 [
 	{
 		"orderId": "fc6cd754-6a30-11e2-a585-4fc569185689",
@@ -624,6 +635,8 @@ GET /api/1.0/invoiceGroup HTTP/1.1
 ```http
 HTTP/1.1 200 OK
 Content-Type: application/json
+´´´
+´´´javascript
 [
 	{
 		"name": "ComHem",
