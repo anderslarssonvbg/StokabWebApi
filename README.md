@@ -25,8 +25,8 @@ Content-Type: application/json
 			"countryCode": "SE"
 		},
 		"building": {
-			"distinguisher": "", // "set if something is needed to distinguish a specific building on the address"
-			"type": "MDU" // "'MDU' = apartment building, 'SDU' = villa"
+			"distinguisher": "", /* "Set if something is needed to distinguish a specific building on the address" */
+			"type": "MDU" /* "'MDU' = apartment building, 'SDU' = villa" */
 		},
 		"realEstate": {
 			"label": "PENGABINGEN 1",
@@ -38,11 +38,11 @@ Content-Type: application/json
 			"projection": "WGS84"
 		},
 		"district": "GAMLA STAN",
-		"suppliers": [ // "optional, should only be provided if not heavy to calculate"
+		"suppliers": [ /* "Optional, should only be provided if not heavy to calculate" */
 			{
 				"name": "STOKAB",
-				"fiberStatus": "IN_REAL_ESTATE", // "'AT_ADDRESS', 'AT_SITE_BOUNDARY'"
-				"statusValidationRequired": true // "indicates if the fiberStatus needs manual validation to assure availability"
+				"fiberStatus": "IN_REAL_ESTATE", /* "'AT_ADDRESS', 'AT_SITE_BOUNDARY'" */
+				"statusValidationRequired": true /* "Indicates if the fiberStatus needs manual validation to assure */ availability"
 			}
 		],
  		"relatedPointIds": [
@@ -54,63 +54,6 @@ Content-Type: application/json
 ]
 ```
 
-## Begränsningsmekanism
-
-För att bara få inkrementella uppdateringar av adresser så används If-Modified-Since. På det viset kan anropet ske ofta men fortfarande vara billigt.
-
-Vid första anropet sker ingen begränsning, utan då frågar man om det fullständiga resultatet. Vid påföljande anrop används If-Modified-Since. Värdet för headern är föregående svars värde på Last-Modified.
-
-Av den anledningen är "Last-Modified" obligatoriskt vid HTTP Status 200.
-Begränsningsmekanism - Exempel
-
-Exempel på anropssekvens:
-
-***Request:***
-
-```http
-GET /api/1.0/feasibility HTTP/1.1
-```
-
-***Response:***
-
-```http
-HTTP/1.1 200 OK
-Last-Modified: Mon, 11 Jan 2016 12:03:28 GMT
-Content-Type: application/json
-
-...
-```
-
-Vid påföljande anrop skickas en "If-Modified-Since"-header för att bara be om uppdaterade poster.
-
-***Request:***
-
-```http
-GET /api/1.0/feasibility HTTP/1.1
-If-Modified-Since: Mon, 11 Jan 2016 12:03:28 GMT
-
-...
-```
-
-Om det finns uppdaterade poster kan svaret se ut så här:
-
-***Response:***
-
-```http
-HTTP/1.1 200 OK
-Last-Modified: Tue, 12 Jan 2016 09:54:55 GMT
-Content-Type: application/json
-
-...
-```
-
-Om det inte finns uppdaterade poster ser svaret istället ut så här:
-
-***Response:***
-
-```http
-HTTP/1.1 304 Not Modified
-```
 
 # 2. Price Estimate API
 ### Hämta prisuppskattning på en förbindelse
@@ -123,7 +66,7 @@ Content-Type: application/json
 
 {
 	"from": { 
-		"address": { /*"may be set to null if any product only requires one point (address). E.g. PointToPoint"*/
+		"address": { /* "May be set to null if any product only requires one point (address). E.g. PointToPoint"*/
 			"city" : "Stockholm",
 			"streetName": "Drottninggatan",
 			"streetNumber": "52",
@@ -157,7 +100,7 @@ Content-Type: application/json
 		...
 	],
 	"contractPeriodMonths": 12, /* "1, 3 or 5 years (in months)." */
-	"noOfFibers": 1 // "number of wanted fiber pairs (or single fibers depending on product /* "Allan: input tack." */
+	"noOfFibers": 1 // "Number of wanted fiber pairs (or single fibers depending on product /* "Allan: input tack." */
 }
 ```
 
@@ -192,7 +135,7 @@ Content-Type: application/json
 							"monthlyFee": 100.0
 						}
 					},
-					...
+					 /* Return all 15 sub-products since they are not unique for a specific customer or product */
 				],
 				"price": {
 					"oneTimeFee": 15100.0,
@@ -212,13 +155,13 @@ Content-Type: application/json
 						},
 						{
 							"name": "Service level Premium",
-							"parameters": [...],
+							"parameters": [],
 							"oneTimeFee": 0.0,
 							"monthlyFee": 200.0
 						},
 						{
 							"name": "Connector",
-							"parameters": [...],
+							"parameters": [],
 							"oneTimeFee": 100.0,
 							"monthlyFee": 0.0
 						},
@@ -301,8 +244,8 @@ Content-Type: application/json
 		"44hg4h-4hy4h4yh-h45yt4h"
 	],
 	"contractPeriodMonths": 12,
-	"noOfFibers": 1, /* "number of wanted fiber pairs (or single fibers depending on product)" */
-	"asyncAnswerAllowed": true /* "if asychronous answer is ok (might result in an extra charge if manual)" */
+	"noOfFibers": 1, /* "Number of wanted fiber pairs (or single fibers depending on product)" */
+	"asyncAnswerAllowed": true /* "If asychronous answer is ok (might result in an extra charge if manual)" */
 }
 ```
 
