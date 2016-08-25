@@ -169,7 +169,14 @@ Content-Type: application/json
 						},
 						...
 					]
-				}
+				}, 
+				"subProducts": [
+					{
+						"productId": "08y3gt4-g-gt54-i",
+						"name": "a suiting name"
+					},
+					...
+				]
 			},
 			{
 				"productId": "87sg-098dsaf-098sudg-098gf",
@@ -177,17 +184,18 @@ Content-Type: application/json
 				"status": "POSSIBLE_WITH_CONDITIONS", // "'NOT_AVAILABLE', 'AVAILABLE'"
 				"comment": "Connection to anslutningsnod is necessary for address to be available",
 				"items": [],
-				"price": null
-			},
-			...
-		],
-		"subProducts": [
-			{
-				"productId": "08y3gt4-g-gt54-i",
-				"name": "a suiting name"
+				"price": null,
+				"subProducts": [
+					{
+						"productId": "08y3gt4-g-gt54-i",
+						"name": "a suiting name"
+					},
+					...
+				]
 			},
 			...
 		]
+		
 	},
 	...
 ]
