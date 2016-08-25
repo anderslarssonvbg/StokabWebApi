@@ -84,7 +84,7 @@ Content-Type: application/json
 			"streetLittera": "A"
 		}
 	},
-	"redundancy": { /* "Will not be implemented by Innofactor" */
+	"redundancy": { 
 		"type": "Full", /* "'Normal', 'Full'" */
 		"toPointId": "" /* May be set to null */
 	},
