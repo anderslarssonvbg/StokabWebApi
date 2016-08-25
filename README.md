@@ -67,23 +67,19 @@ Content-Type: application/json
 ```
 ```javascript
 {
-	"from": { 
-		"address": { /*"may be set to null if any product only requires one point (address). E.g. PointToPoint"*/
-			"city" : "Stockholm",
-			"streetName": "Drottninggatan",
-			"streetNumber": "52",
-			"streetLittera": "A",
-			"postalCode": "18273"
-		}
+	"fromAddress": {  /*"may be set to null if any product only requires one point (address). E.g. PointToPoint"*/ 
+		"city" : "Stockholm",
+		"streetName": "Drottninggatan",
+		"streetNumber": "52",
+		"streetLittera": "A",
+		"postalCode": "18273"
 	},
-	"to": { 
-		"address": {
-			"city" : "Stockholm",
-			"streetName": "Drottninggatan",
-			"streetNumber": "68",
-			"streetLittera": "A",
-			"postalCode": "18273"
-		}
+	"toAddress": { 
+		"city" : "Stockholm",
+		"streetName": "Drottninggatan",
+		"streetNumber": "68",
+		"streetLittera": "A",
+		"postalCode": "18273"
 	},
 	"redundancy": {
 		"type": "Full", /* "'Normal', 'Full'" */
@@ -213,22 +209,19 @@ Content-Type: application/json
 	"supplier": "STOKAB",
 	"productId": "98j35-f4fewf-fwef-f444", /* "e.g. 'Point2Point', 'Star'" */
 	"referenceId": "CH-12345", /* "client own reference for this inquiry, could be empty" */
-	"from": {
-		"address": { /*"may be set to null if any product only requires one point (address). E.g. Point2Point"*/
-			"city" : "Stockholm",
-			"streetName": "Drottninggatan",
-			"streetNumber": "52",
-			"streetLittera": "A",
-			"postalCode": "12398"
-		}
+	"fromAddress": { /*"may be set to null if any product only requires one point (address). E.g. Point2Point"*/
+		"city" : "Stockholm",
+		"streetName": "Drottninggatan",
+		"streetNumber": "52",
+		"streetLittera": "A",
+		"postalCode": "12398"
 	},
-	"to": { "address": { 
-			"city" : "Stockholm",
-			"streetName": "Drottninggatan",
-			"streetNumber": "68",
-			"streetLittera": "A",
-			"postalCode": "12383"
-		}
+	"toAddress": {
+		"city" : "Stockholm",
+		"streetName": "Drottninggatan",
+		"streetNumber": "68",
+		"streetLittera": "A",
+		"postalCode": "12383"
 	},
 	"redundancy": {
 		"type": "Full", /* "'Normal', 'Full'" */
