@@ -218,7 +218,7 @@ Content-Type: application/json
 			"city" : "Stockholm",
 			"streetName": "Drottninggatan",
 			"streetNumber": "52",
-			"streetLittera": "A"
+			"streetLittera": "A",
 			"postalCode": "12398"
 		}
 	},
@@ -227,7 +227,7 @@ Content-Type: application/json
 			"streetName": "Drottninggatan",
 			"streetNumber": "68",
 			"streetLittera": "A",
-			"postalCode": "12383
+			"postalCode": "12383"
 		}
 	},
 	"redundancy": {
