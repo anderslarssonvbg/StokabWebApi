@@ -13,7 +13,8 @@ GET /api/1.0/feasibility HTTP/1.1
 HTTP/1.1 200 OK
 Last-Modified: Sun, 10 Jan 2016 12:03:28 GMT
 Content-Type: application/json
-
+```
+```javascript
 [
 	{
 		"address": {
@@ -25,8 +26,8 @@ Content-Type: application/json
 			"countryCode": "SE"
 		},
 		"building": {
-			"distinguisher": "", /* "Set if something is needed to distinguish a specific building on the address" */
-			"type": "MDU" /* "'MDU' = apartment building, 'SDU' = villa" */
+			"distinguisher": "", // "set if something is needed to distinguish a specific building on the address"
+			"type": "MDU" // "'MDU' = apartment building, 'SDU' = villa"
 		},
 		"realEstate": {
 			"label": "PENGABINGEN 1",
@@ -38,20 +39,75 @@ Content-Type: application/json
 			"projection": "WGS84"
 		},
 		"district": "GAMLA STAN",
-		"suppliers": [ /* "Optional, should only be provided if not heavy to calculate" */
+		"suppliers": [ // "optional, should only be provided if not heavy to calculate"
 			{
 				"name": "STOKAB",
-				"fiberStatus": "IN_REAL_ESTATE", /* "'AT_ADDRESS', 'AT_SITE_BOUNDARY'" */
-				"statusValidationRequired": true /* "Indicates if the fiberStatus needs manual validation to assure */ availability"
+				"fiberStatus": "IN_REAL_ESTATE", // "'AT_ADDRESS', 'AT_SITE_BOUNDARY'"
+				"statusValidationRequired": true // "indicates if the fiberStatus needs manual validation to assure availability"
 			}
 		],
- 		"relatedPointIds": [
+ 		"relatedPointIds": [ /* "Will not be implemented by Innofactor." */
 			"CDE678",
 			"CDE901"
 		]
 	},
 	...
 ]
+```
+
+## ~~Begränsningsmekanism~~
+
+~~För att bara få inkrementella uppdateringar av adresser så används If-Modified-Since. På det viset kan anropet ske ofta men fortfarande vara billigt.~~
+
+~~Vid första anropet sker ingen begränsning, utan då frågar man om det fullständiga resultatet. Vid påföljande anrop används If-Modified-Since. Värdet för headern är föregående svars värde på Last-Modified.~~
+
+~~Av den anledningen är "Last-Modified" obligatoriskt vid HTTP Status 200.~~
+Begränsningsmekanism - Exempel
+
+Exempel på anropssekvens:
+
+***Request:***
+
+```http
+GET /api/1.0/feasibility HTTP/1.1
+```
+
+***Response:***
+
+```http
+HTTP/1.1 200 OK
+Last-Modified: Mon, 11 Jan 2016 12:03:28 GMT
+Content-Type: application/json
+...
+```
+
+Vid påföljande anrop skickas en "If-Modified-Since"-header för att bara be om uppdaterade poster.
+
+***Request:***
+
+```http
+GET /api/1.0/feasibility HTTP/1.1
+If-Modified-Since: Mon, 11 Jan 2016 12:03:28 GMT
+...
+```
+
+Om det finns uppdaterade poster kan svaret se ut så här:
+
+***Response:***
+
+```http
+HTTP/1.1 200 OK
+Last-Modified: Tue, 12 Jan 2016 09:54:55 GMT
+Content-Type: application/json
+...
+```
+
+Om det inte finns uppdaterade poster ser svaret istället ut så här:
+
+***Response:***
+
+```http
+HTTP/1.1 304 Not Modified
 ```
 
 
@@ -63,15 +119,15 @@ Content-Type: application/json
 ```http
 POST /api/1.0/priceEstimates HTTP/1.1
 Content-Type: application/json
-
+```
+```javascript
 {
 	"from": { 
-		"address": { /* "May be set to null if any product only requires one point (address). E.g. PointToPoint"*/
+		"address": { /*"may be set to null if any product only requires one point (address). E.g. PointToPoint"*/
 			"city" : "Stockholm",
 			"streetName": "Drottninggatan",
 			"streetNumber": "52",
-			"streetLittera": "A",
-			"postalCode": "18273"
+			"streetLittera": "A"
 		}
 	},
 	"to": { 
@@ -79,11 +135,10 @@ Content-Type: application/json
 			"city" : "Stockholm",
 			"streetName": "Drottninggatan",
 			"streetNumber": "68",
-			"streetLittera": "A",
-			"postalCode": "18273"
+			"streetLittera": "A"
 		}
 	},
-	"redundancy": {
+	"redundancy": { /* "Will not be implemented by Innofactor" */
 		"type": "Full", /* "'Normal', 'Full'" */
 		"toPointId": "" /* May be set to null */
 	},
@@ -99,8 +154,8 @@ Content-Type: application/json
 		},
 		...
 	],
-	"contractPeriodMonths": 12, /* "1, 3 or 5 years (in months)." */
-	"noOfFibers": 1 // "Number of wanted fiber pairs (or single fibers depending on product /* "Allan: input tack." */
+	"contractPeriodMonths": 12, /* Allan: input tack. */
+	"noOfFibers": 1 // "number of wanted fiber pairs (or single fibers depending on product /* "Allan: input tack." */
 }
 ```
 
@@ -109,7 +164,8 @@ Content-Type: application/json
 ```http
 HTTP/1.1 200 OK
 Content-Type: application/json
-
+```
+```javascript
 [
 	{
 		"supplier": "STOKAB",
@@ -119,28 +175,17 @@ Content-Type: application/json
 				"name": "Point2Point",
 				"status": "AVAILABLE",
 				"comment": "",
-				"items": [ /* "Will return empty array for now" */
+				"items": [
 					{
 						"name": "distance",
 						"value": "987"
 					},
 					...
 				],
-				"subProducts": [ /* "Will be related to the product" */
-					{
-						"productId": "08y3gt4-g-gt54-i",
-						"name": "a suiting name",
-						"price": {
-							"oneTimeFee": 1100.0,
-							"monthlyFee": 100.0
-						}
-					},
-					 /* Return all 15 sub-products since they are not unique for a specific customer or product */
-				],
 				"price": {
 					"oneTimeFee": 15100.0,
 					"monthlyFee": 1200.0,
-					"items": [ /* "Will return empty array for now" */
+					"items": [
 						{
 							"name": "Connection based on distance",
 							"parameters": [
@@ -155,13 +200,13 @@ Content-Type: application/json
 						},
 						{
 							"name": "Service level Premium",
-							"parameters": [],
+							"parameters": [...],
 							"oneTimeFee": 0.0,
 							"monthlyFee": 200.0
 						},
 						{
 							"name": "Connector",
-							"parameters": [],
+							"parameters": [...],
 							"oneTimeFee": 100.0,
 							"monthlyFee": 0.0
 						},
@@ -186,11 +231,17 @@ Content-Type: application/json
 				"status": "POSSIBLE_WITH_CONDITIONS", // "'NOT_AVAILABLE', 'AVAILABLE'"
 				"comment": "Connection to anslutningsnod is necessary for address to be available",
 				"items": [],
-				"subProducts": [],
 				"price": null
 			},
 			...
 		],
+		"subProducts": [
+			{
+				"productId": "08y3gt4-g-gt54-i",
+				"name": "a suiting name"
+			},
+			...
+		]
 	},
 	...
 ]
@@ -204,7 +255,8 @@ Content-Type: application/json
 ```http
 POST /api/1.0/offerInquiry HTTP/1.1
 Content-Type: application/json
-
+```
+```javascript
 {
 	"supplier": "STOKAB",
 	"productId": "98j35-f4fewf-fwef-f444", /* "e.g. 'Point2Point', 'Star'" */
@@ -215,19 +267,17 @@ Content-Type: application/json
 			"streetName": "Drottninggatan",
 			"streetNumber": "52",
 			"streetLittera": "A"
-			"postalCode": "12398"
 		}
 	},
 	"to": { "address": { 
 			"city" : "Stockholm",
 			"streetName": "Drottninggatan",
 			"streetNumber": "68",
-			"streetLittera": "A",
-			"postalCode": "12383
+			"streetLittera": "A"
 		}
 	},
-	"redundancy": {
-		"type": "Full", /* "'Normal', 'Full'" */
+	"redundancy": {  /* "Will not be implemented by Innofactor" */
+		"type": "Full", // "'Normal', 'Full'"
 		"toPointId": "CBA123"
 	},
 	"customerType": "Commercial", /* "e.g. 'Commercial', 'Residential'" */
@@ -244,8 +294,8 @@ Content-Type: application/json
 		"44hg4h-4hy4h4yh-h45yt4h"
 	],
 	"contractPeriodMonths": 12,
-	"noOfFibers": 1, /* "Number of wanted fiber pairs (or single fibers depending on product)" */
-	"asyncAnswerAllowed": true /* "If asychronous answer is ok (might result in an extra charge if manual)" */
+	"noOfFibers": 1, /* "number of wanted fiber pairs (or single fibers depending on product)" */
+	"asyncAnswerAllowed": true /* "if asychronous answer is ok (might result in an extra charge if manual)" */
 }
 ```
 
@@ -256,13 +306,14 @@ HTTP/1.1 201 CREATED
 Last-Modified: Mon, 11 Jan 2015 12:03:28 GMT
 Location: /api/1.0/inquiries/ec4bc754-6a30-11e2-a585-4fc569183061
 Content-Type: application/json
-
+```
+```javascript
 {
 	"inquiryId": "ec4bc754-6a30-11e2-a585-4fc569183061",
 	"referenceId": "CH-12345",
 	"status": {
 		"state": "WAIT_ASYNC_ANSWER", /* "'DONE_SUCCESS', 'DONE_FAILED', 'DONE_ASYNC_ANSWER_SUCCESS', 'DONE_ASYNC_ANSWER_FAILED'" */
-		"message": "",
+		"message": "", /* "Allan? */
 		"createDateTime": "2016-08-21T08:01:06.000Z",
 		"doneDateTime": "2016-08-22T10:15:01.000Z", /* "should be null if not yet done" */
 	},
@@ -275,26 +326,18 @@ Content-Type: application/json
 		"name": "Point2Point",
 		"status": "AVAILABLE",
 		"comment": "",
-		"items": [ /* "Will return empty array for now" */
+		"items": [
 			{
 				"name": "distance",
 				"value": "987"
 			},
 			...
 		],
-		"subProducts": [
-			"productId": "87sagf-087sagf-098s7fg-9sg",
-			"name": "awesomeProduct",
-			"price": {
-				"oneTimeFee": "1287.99",
-				"monthlyFee": "283.00"
-			}
-		],
 		"price": {
 			"status": "ESTIMATED", /* "'ESTIMATED', 'OFFER'. Estimated price can be delivered in synchronous answer and then be overridden by an offer in an asynchronous answer" */
 			"oneTimeFee": 15100.0,
 			"monthlyFee": 1200.0,
-			"items": [ /* "Will return empty array for now" */
+			"items": [ /* "Allan, vad är detta?" */
 				{
 					"name": "Connection based on distance",
 					"parameters": [
@@ -334,6 +377,10 @@ Content-Type: application/json
 			]
 			
 		}
+	},
+	"subProducts": {
+		"productId": "87sagf-087sagf-098s7fg-9sg",
+		"name": "awesomeProduct"
 	}
 }
 ```
@@ -352,7 +399,8 @@ GET /api/1.0/inquiries/ec4bc754-6a30-11e2-a585-4fc569183061 HTTP/1.1
 HTTP/1.1 200 OK
 Last-Modified: Mon, 11 Jan 2015 12:03:28 GMT
 Content-Type: application/json
-
+```
+```javascript
 {
 	"inquiryId": "ec4bc754-6a30-11e2-a585-4fc569183061",
 	"referenceId": "CH-12345",
@@ -371,26 +419,18 @@ Content-Type: application/json
 		"name": "Point2Point",
 		"status": "AVAILABLE",
 		"comment": "",
-		"items": [ /* "Will return empty array for now" */
+		"items": [
 			{
 				"name": "distance",
 				"value": "1046"
 			},
 			...
 		],
-		"subProducts": [
-			"productId": "87sagf-087sagf-098s7fg-9sg",
-			"name": "awesomeProduct",
-			"price": {
-				"oneTimeFee": "1287.99",
-				"monthlyFee": "283.00"
-			}
-		],
 		"price": {
 			"status": "OFFER",
 			"oneTimeFee": 15100.0,
 			"monthlyFee": 1500.0,
-			"items": [ /* "Will return empty array for now" */
+			"items": [
 				{
 					"name": "Connection based on distance",
 					"parameters": [
@@ -429,7 +469,12 @@ Content-Type: application/json
 				...
 			]
 		}
-	}
+	},
+	"subProducts": [
+		{
+			"productId": "oijsagf0-08afd-098uafd",
+			"name": "aname"
+	]
 }
 ```
 
@@ -460,7 +505,8 @@ GET /api/1.0/inquiries?since=2016-08-22T15:01:02.000Z
 ```http
 HTTP/1.1 200 OK
 Content-Type: application/json
-
+```
+```javascript
 [
 	{
 		"inquiryId": "ec4bc754-6a30-11e2-a585-4fc569183061",
@@ -484,7 +530,8 @@ Content-Type: application/json
 ```http
 POST /api/1.0/orders HTTP/1.1
 Content-Type: application/json
-
+```
+```javascript
 {
 	"inquiryId": "ec4bc754-6a30-11e2-a585-4fc569183061",
 	"responsiblePerson": {
@@ -511,7 +558,8 @@ HTTP/1.1 201 CREATED
 Last-Modified: Mon, 11 Jan 2015 12:05:28 GMT
 Location: /api/1.0/orders/fc6cd754-6a30-11e2-a585-4fc569185689
 Content-Type: application/json
-
+```
+```javascript
 {
 	"orderId": "fc6cd754-6a30-11e2-a585-4fc569185689",
 	"inquiryId": "ec4bc754-6a30-11e2-a585-4fc569183061",
@@ -539,7 +587,8 @@ GET /api/1.0/orders/fc6cd754-6a30-11e2-a585-4fc569185689 HTTP/1.1
 HTTP/1.1 200 OK
 Last-Modified: Tue, 15 Feb 2015 15:12:53 GMT
 Content-Type: application/json
-
+```
+```javascript
 {
 	"orderId": "fc6cd754-6a30-11e2-a585-4fc569185689",
 	"inquiryId": "ec4bc754-6a30-11e2-a585-4fc569183061",
@@ -595,7 +644,8 @@ GET /api/1.0/orders?since=2016-08-22T10:09:23.000Z
 ```http
 HTTP/1.1 200 OK
 Content-Type: application/json
-
+```
+```javascript
 [
 	{
 		"orderId": "fc6cd754-6a30-11e2-a585-4fc569185689",
@@ -624,11 +674,12 @@ GET /api/1.0/invoiceGroup HTTP/1.1
 ```http
 HTTP/1.1 200 OK
 Content-Type: application/json
+```
+```javascript
 [
 	{
 		"name": "ComHem",
-		"invoiceGroup": "9834",
-		"otherField": "Will be named later"
+		"customerNumber": "9834"
 	},
 	...
 ]
