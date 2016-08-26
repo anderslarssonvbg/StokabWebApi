@@ -634,7 +634,7 @@ Content-Type: application/json
 	{
 		"name": "ComHem",
 		"invoiceGroup": "9834",
-		"otherField": "Will be named later"
+		"clientNumber": "23892382938"
 	},
 	...
 ]
