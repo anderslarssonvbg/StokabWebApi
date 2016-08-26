@@ -181,6 +181,19 @@ Content-Type: application/json
 			},
 			{
 				"productId": "87sg-098dsaf-098sudg-098gf",
+				"actualAddress" : {},
+				"name": "Star",
+				"status": "POSSIBLE_WITH_CONDITIONS", // "'NOT_AVAILABLE', 'AVAILABLE'"
+				"comment": "Connection to anslutningsnod is necessary for address to be available",
+				"items": [],
+				"price": null,
+				"subProducts": []
+			},
+			{
+				"productId": "87sg-098dsaf-098sudg-098gf",
+				"actualAddress" : {
+				...
+				},
 				"name": "Star",
 				"status": "POSSIBLE_WITH_CONDITIONS", // "'NOT_AVAILABLE', 'AVAILABLE'"
 				"comment": "Connection to anslutningsnod is necessary for address to be available",
