@@ -125,17 +125,6 @@ Content-Type: application/json
 					},
 					...
 				],
-				"subProducts": [ /* "Will be related to the product" */
-					{
-						"productId": "08y3gt4-g-gt54-i",
-						"name": "a suiting name",
-						"price": {
-							"oneTimeFee": 1100.0,
-							"monthlyFee": 100.0
-						}
-					},
-					...
-				],
 				"price": {
 					"oneTimeFee": 15100.0,
 					"monthlyFee": 1200.0,
@@ -177,7 +166,18 @@ Content-Type: application/json
 						},
 						...
 					]
-				}
+				},
+				"subProducts": [ /* "Will be related to the product" */
+					{
+						"productId": "08y3gt4-g-gt54-i",
+						"name": "a suiting name",
+						"price": {
+							"oneTimeFee": 1100.0,
+							"monthlyFee": 100.0
+						}
+					},
+					...
+				]
 			},
 			{
 				"productId": "87sg-098dsaf-098sudg-098gf",
@@ -185,8 +185,8 @@ Content-Type: application/json
 				"status": "POSSIBLE_WITH_CONDITIONS", // "'NOT_AVAILABLE', 'AVAILABLE'"
 				"comment": "Connection to anslutningsnod is necessary for address to be available",
 				"items": [],
-				"subProducts": [],
-				"price": null
+				"price": null,
+				"subProducts": []
 			},
 			...
 		],
