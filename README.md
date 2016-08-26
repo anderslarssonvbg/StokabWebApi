@@ -476,7 +476,7 @@ Content-Type: application/json
 ]
 ```
 
-# 5. Order API
+# 4. Order API
 ### Lägg en beställning på en tidigare mottagen offert och komplettera med kund och fakturainformation.
 
 ***Request:***
@@ -614,7 +614,7 @@ Content-Type: application/json
 	...
 ]
 ```
-# 6. Invoice Group
+# 5. Invoice Group
 ### Hämta alla fakturamottagare för specifik kund
 
 ***Request:***
