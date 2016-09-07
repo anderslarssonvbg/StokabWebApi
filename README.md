@@ -22,8 +22,7 @@ Content-Type: application/json
 			"number": "100",
 			"littera": "",
 			"postalCode": "10000",
-			"city": "Ankeborg",
-			"countryCode": "SE"
+			"city": "Ankeborg"
 		},
 		"building": {
 			"distinguisher": "", // "set if something is needed to distinguish a specific building on the address"
@@ -69,16 +68,16 @@ Content-Type: application/json
 {
 	"fromAddress": {  /*"may be set to null if any product only requires one point (address). E.g. PointToPoint"*/ 
 		"city" : "Stockholm",
-		"streetName": "Drottninggatan",
-		"streetNumber": "52",
-		"streetLittera": "A",
+		"street": "Drottninggatan",
+		"number": "52",
+		"littera": "A",
 		"postalCode": "18273"
 	},
 	"toAddress": { 
 		"city" : "Stockholm",
-		"streetName": "Drottninggatan",
-		"streetNumber": "68",
-		"streetLittera": "A",
+		"street": "Drottninggatan",
+		"number": "68",
+		"littera": "A",
 		"postalCode": "18273"
 	},
 	"redundancy": {
