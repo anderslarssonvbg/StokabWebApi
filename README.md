@@ -268,7 +268,7 @@ Content-Type: application/json
 ```
 ```javascript
 {
-	"inquiryId": "ec4bc754-6a30-11e2-a585-4fc569183061",
+	"inquiryId": "ec4bc754-6a30-11e2-a585-4fc569183061", /* Incident number in CRM */
 	"referenceId": "CH-12345",
 	"status": {
 		"state": "WAIT_ASYNC_ANSWER", /* "'DONE_SUCCESS', 'DONE_FAILED', 'DONE_ASYNC_ANSWER_SUCCESS', 'DONE_ASYNC_ANSWER_FAILED'" */
@@ -293,12 +293,14 @@ Content-Type: application/json
 			...
 		],
 		"subProducts": [
+		{
 			"productId": "87sagf-087sagf-098s7fg-9sg",
 			"name": "awesomeProduct",
 			"price": {
 				"oneTimeFee": "1287.99",
 				"monthlyFee": "283.00"
 			}
+		}...
 		],
 		"price": {
 			"status": "ESTIMATED", /* "'ESTIMATED', 'OFFER'. Estimated price can be delivered in synchronous answer and then be overridden by an offer in an asynchronous answer" */
@@ -390,12 +392,14 @@ Content-Type: application/json
 			...
 		],
 		"subProducts": [
+		{
 			"productId": "87sagf-087sagf-098s7fg-9sg",
 			"name": "awesomeProduct",
 			"price": {
 				"oneTimeFee": "1287.99",
 				"monthlyFee": "283.00"
 			}
+		}...
 		],
 		"price": {
 			"status": "OFFER",
