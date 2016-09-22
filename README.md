@@ -93,7 +93,7 @@ Content-Type: application/json
 		...
 	],
 	"contractPeriodMonths": 12, /* "1, 3 or 5 years (in months)." */
-	"noOfFibers": 1 // "number of wanted fiber pairs (or single fibers depending on product /* "Allan: input tack." */
+	"noOfFibers": 1 /* "number of wanted fiber pairs (or single fibers depending on product  */
 }
 ```
 
