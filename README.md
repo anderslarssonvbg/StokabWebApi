@@ -96,6 +96,9 @@ Content-Type: application/json
 		},
 		...
 	],
+	"subProducts": [ /* Will not be implemented by innofactor*/
+	...
+	]
 	"contractPeriodMonths": 12, /* "1, 3 or 5 years (in months)." */
 	"noOfFibers": 1 /* "number of wanted fiber pairs (or single fibers depending on product  */
 }
