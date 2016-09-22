@@ -265,7 +265,7 @@ Content-Type: application/json
 	],
 	"contractPeriodMonths": 12,
 	"noOfFibers": 1, /* "Number of wanted fiber pairs (or single fibers depending on product)" */
-	"asyncAnswerAllowed": true /* "If asychronous answer is ok (might result in an extra charge if manual)" */
+	"asyncAnswerAllowed": true /* "If asychronous answer is ok." */
 }
 ```
 
