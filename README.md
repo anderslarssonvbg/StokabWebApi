@@ -65,27 +65,32 @@ POST /api/1.0/priceEstimates HTTP/1.1
 Content-Type: application/json
 ```
 ```javascript
-{
+{	"fromPointId": "ABC123",
 	"fromAddress": {  /* May be set to null if any product only requires one point (address). E.g. Star. */ 
 		"city" : "Stockholm",
 		"street": "Drottninggatan",
 		"number": "52",
 		"littera": "A",
-		"isSecretAddress": true
+		"zipCode" : "11134",
+		"comment": "",
+		"isCustomerNode": true /* This would be Stokab specific and only implemented if no other soultion can be found for customer-nodes */
 	},
+	"toPointId": "ABC124",
 	"toAddress": { 
 		"city" : "Stockholm",
 		"street": "Drottninggatan",
 		"number": "68",
-		"littera": "A"
+		"littera": "A",
+		"zipCode": "11244",
+		"comment": ""
 	},
 	"redundancy": {
 		"type": "Full", /* "'Normal', 'Full'" */
 		"toPointId": "" /* May be set to null */
 	},
-	"customerType": "Commercial", /* "e.g. 'Commercial', 'Residential'" */
-	"serviceLevel": "Premium", /* "e.g. 'Base', 'Gold', 'Premium'" */
-	"products": ["All"], /* "e.g. 'All', 'Point2Point', 'Star'" */
+	"customerType": "Commercial", /* E.g. 'Commercial', 'Residential' */
+	"serviceLevel": "Premium", /* E.g. 'Base', 'Gold', 'Premium' */
+	"products": ["All"], /* E.g. 'All', 'Point2Point', 'Star' */
 	"parameters": [ 
 		{
 			"name": "ConnectorType",
@@ -95,13 +100,13 @@ Content-Type: application/json
 			"name": "NumberOfRooms",
 			"value": "10"
 		},
-		...
+		[...]
 	],
 	"subProducts": [ /* Will not be implemented by innofactor*/
 	...
-	]
-	"contractPeriodMonths": 12, /* "1, 3 or 5 years (in months)." */
-	"noOfFibers": 1 /* "number of wanted fiber pairs (or single fibers depending on product  */
+	],
+	"contractPeriodMonths": 12, /* 1, 3 or 5 years (in months). */
+	"noOfFibers": 1 /* Number of wanted fiber pairs or single fibers depending on product.  */
 }
 ```
 
@@ -121,24 +126,24 @@ Content-Type: application/json
 				"name": "Point2Point",
 				"status": "AVAILABLE",
 				"comment": "",
-				"items": [ /* 'Items' is ambiguous and should be replaced with something more descriptive */
+				"items": [ 
 					{
 						"name": "distance",
 						"value": "987"
 					},
-					...
+					[...]
 				],
-				"subProducts": [ /* "Will be related to the product" */
+				"subProducts": [
 					{
-						"productId": "08y3gt4-g-gt54-i",
-						"name": "a suiting name",
+						"productId": "51dceb13-8d25-4f5f-adb1-29169d6042e2",
+						"name": "APC",
 						"price": {
 							"oneTimeFee": 1100.0,
 							"monthlyFee": 100.0
 						}
 					},
-					...
-				]
+					[...]
+				],
 				"price": {
 					"oneTimeFee": 15100.0,
 					"monthlyFee": 1200.0,
@@ -150,7 +155,7 @@ Content-Type: application/json
 									"name": "distance",
 									"value": "987"
 								},
-								...
+								[...]
 							],
 							"oneTimeFee": 5000.0,
 							"monthlyFee": 1000.0
@@ -171,44 +176,46 @@ Content-Type: application/json
 							"name": "ResidentialNetwork",
 							"parameters": [
 								{
-									"name": "NoOfRooms",
+									"name": "NumberOfRooms",
 									"value": "10"
 								}
 							],
 							"oneTimeFee": 10000.0,
 							"monthlyFee": 0.0
 						},
-						...
+						[...]
 					]
 				}
 				
 			},
 			{
-				"productId": "87sg-098dsaf-098sudg-098gf",
-				"actualAddress" : {},
-				"name": "Star",
-				"status": "POSSIBLE_WITH_CONDITIONS", // "'NOT_AVAILABLE', 'AVAILABLE'"
-				"comment": "Connection to anslutningsnod is necessary for address to be available",
-				"items": [],
-				"price": null,
-				"subProducts": []
-			},
-			{
-				"productId": "87sg-098dsaf-098sudg-098gf",
+				"productId": "2b99bcfb-b563-4b04-8c8a-8fd636f56d67",
 				"actualAddress" : {
-				...
+					[...]
 				},
 				"name": "Star",
 				"status": "POSSIBLE_WITH_CONDITIONS", // "'NOT_AVAILABLE', 'AVAILABLE'"
 				"comment": "Connection to anslutningsnod is necessary for address to be available",
 				"items": [],
-				"price": null,
-				"subProducts": []
+				"subProducts": [],
+				"price": null
 			},
-			...
+			{
+				"productId": "87sg-098dsaf-098sudg-098gf",
+				"actualAddress" : {
+					[...]
+				},
+				"name": "Star",
+				"status": "POSSIBLE_WITH_CONDITIONS", // "'NOT_AVAILABLE', 'AVAILABLE'"
+				"comment": "Connection to anslutningsnod is necessary for address to be available",
+				"items": [],
+				"subProducts": [],
+				"price": null
+			},
+			[...]
 		],
 	},
-	...
+	[...]
 ]
 ```
 
@@ -227,43 +234,45 @@ Content-Type: application/json
 	"productId": "0d13c5e0-ce23-41a0-87b5-f480479fa71e", 
 	"productName": "Point2Point",
 	"referenceId": "CH-12345", /* "client own reference for this inquiry, could be empty" */
+	"fromPointId": "ABC123",
 	"fromAddress": {
 		"city" : "Stockholm",
 		"streetName": "Drottninggatan",
 		"streetNumber": "52",
-		"streetLittera": "A"
+		"streetLittera": "A",
+		"zipCode": "11124"0
 	},
+	"toPointId": "ABC124",
 	"toAddress": {
 		"city" : "Stockholm",
 		"streetName": "Drottninggatan",
 		"streetNumber": "68",
-		"streetLittera": "A"
+		"streetLittera": "A",
+		"zipCode": "11154"
 	},
 	"redundancy": {
-		"type": "Full", /* "'Normal', 'Full'" */
+		"type": "Full", /* 'NoReduncancy', 'Normal'. (Full redundancy not availible from Stokab-api.) */
 		"toPointId": "CBA123"
 	},
 	"customerType": "Commercial", /* "e.g. 'Commercial', 'Residential'" */
 	"serviceLevel": "Premium", /* "e.g. 'Base', 'Gold', 'Premium'" */
-	"parameters": [  /* "Will not be implemented by Innofactor" */
+	"parameters": [  
 		{
 			"name": "ConnectorType",
 			"value": "SC/APC"
 		},
-		...
-	],
-	"subProducts": [
-	{
-		"productId": "12345445435435",
-		"parameters": [
 		{
 			"name": "NoOfRooms",
 			"value": "10"
 		},
-	...
-		]
-	},
-	...
+		[...]
+	],
+	"subProducts": [
+		{
+			"productId": "512b7502-fb41-496d-86b6-34d4562cd9a6",
+			"name": "APC"
+		},
+	[...]
 	],
 	"contractPeriodMonths": 12,
 	"noOfFibers": 1, /* "Number of wanted fiber pairs (or single fibers depending on product)" */
@@ -320,7 +329,7 @@ Content-Type: application/json
 			"status": "ESTIMATED", /* "'ESTIMATED', 'OFFER'. Estimated price can be delivered in synchronous answer and then be overridden by an offer in an asynchronous answer" */
 			"oneTimeFee": 15100.0,
 			"monthlyFee": 1200.0,
-			"items": [ /* "Will return empty array for now" */
+			"items": [
 				{
 					"name": "Connection based on distance",
 					"parameters": [
