@@ -72,6 +72,7 @@ Content-Type: application/json
 		"number": "52",
 		"littera": "A"
 	},
+	"customerfromAddressGuaranteed" : true,
 	"toAddress": { 
 		"city" : "Stockholm",
 		"street": "Drottninggatan",
