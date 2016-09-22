@@ -25,7 +25,7 @@ Content-Type: application/json
 			"city": "Ankeborg"
 		},
 		"building": {
-			"distinguisher": "", // "set if something is needed to distinguish a specific building on the address"
+			"distinguisher": "", // "Set if something is needed to distinguish a specific building on the address."
 			"type": "MDU" // "'MDU' = apartment building, 'SDU' = villa"
 		},
 		"realEstate": {
@@ -66,7 +66,7 @@ Content-Type: application/json
 ```
 ```javascript
 {
-	"fromAddress": {  /*"may be set to null if any product only requires one point (address). E.g. PointToPoint"*/ 
+	"fromAddress": {  /* May be set to null if any product only requires one point (address). E.g. Star. */ 
 		"city" : "Stockholm",
 		"street": "Drottninggatan",
 		"number": "52",
