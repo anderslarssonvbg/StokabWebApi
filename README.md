@@ -84,9 +84,7 @@ Content-Type: application/json
 	},
 	"customerType": "Commercial", /* "e.g. 'Commercial', 'Residential'" */
 	"serviceLevel": "Premium", /* "e.g. 'Base', 'Gold', 'Premium'" */
-	"productTypes": [
-		"All" /* "e.g. 'All', 'Point2Point', 'Star'" */
-	],
+	"products": "All" /* "e.g. 'All', 'Point2Point', 'Star'" *,
 	"parameters": [ /* "Will not be implemented by Innofactor" */
 		{
 			"name": "ConnectorType",
