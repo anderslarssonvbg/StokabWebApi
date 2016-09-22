@@ -216,7 +216,7 @@ Content-Type: application/json
 {
 	"supplier": "STOKAB",
 	"productId": "0d13c5e0-ce23-41a0-87b5-f480479fa71e", 
-	"productType": "Star",
+	"productName": "Point2Point",
 	"referenceId": "CH-12345", /* "client own reference for this inquiry, could be empty" */
 	"fromAddress": {
 		"city" : "Stockholm",
