@@ -124,6 +124,7 @@ Content-Type: application/json
 			{
 				"productId" : "8u3-3563-3635-365-ff",
 				"name": "Point2Point",
+				"actualAddress": {},
 				"status": "AVAILABLE",
 				"comment": "",
 				"items": [ 
@@ -190,10 +191,8 @@ Content-Type: application/json
 			},
 			{
 				"productId": "2b99bcfb-b563-4b04-8c8a-8fd636f56d67",
-				"actualAddress" : {
-					[...]
-				},
 				"name": "Star",
+				"actualAddress" : {},
 				"status": "POSSIBLE_WITH_CONDITIONS", // "'NOT_AVAILABLE', 'AVAILABLE'"
 				"comment": "Connection to anslutningsnod is necessary for address to be available",
 				"items": [],
@@ -202,10 +201,8 @@ Content-Type: application/json
 			},
 			{
 				"productId": "87sg-098dsaf-098sudg-098gf",
-				"actualAddress" : {
-					[...]
-				},
 				"name": "Star",
+				"actualAddress" : {},
 				"status": "POSSIBLE_WITH_CONDITIONS", // "'NOT_AVAILABLE', 'AVAILABLE'"
 				"comment": "Connection to anslutningsnod is necessary for address to be available",
 				"items": [],
