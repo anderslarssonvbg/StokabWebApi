@@ -70,9 +70,9 @@ Content-Type: application/json
 		"city" : "Stockholm",
 		"street": "Drottninggatan",
 		"number": "52",
-		"littera": "A"
+		"littera": "A",
+		"isSecretAddress": true
 	},
-	"customerfromAddressGuaranteed" : true,
 	"toAddress": { 
 		"city" : "Stockholm",
 		"street": "Drottninggatan",
