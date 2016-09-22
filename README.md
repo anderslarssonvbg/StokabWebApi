@@ -217,9 +217,10 @@ Content-Type: application/json
 ```javascript
 {
 	"supplier": "STOKAB",
-	"productId": "0d13c5e0-ce23-41a0-87b5-f480479fa71e", /* "e.g. 'Point2Point', 'Star'" */
+	"productId": "0d13c5e0-ce23-41a0-87b5-f480479fa71e", 
+	"productType": "Star",
 	"referenceId": "CH-12345", /* "client own reference for this inquiry, could be empty" */
-	"fromAddress": { /*"may be set to null if any product only requires one point (address). E.g. Point2Point"*/
+	"fromAddress": {
 		"city" : "Stockholm",
 		"streetName": "Drottninggatan",
 		"streetNumber": "52",
