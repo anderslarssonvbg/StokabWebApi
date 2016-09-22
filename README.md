@@ -38,11 +38,11 @@ Content-Type: application/json
 			"projection": "WGS84"
 		},
 		"district": "GAMLA STAN",
-		"suppliers": [ // "optional, should only be provided if not heavy to calculate"
+		"suppliers": [ // "Optional; should only be provided if not heavy too calculate."
 			{
 				"name": "STOKAB",
 				"fiberStatus": "IN_REAL_ESTATE", // "'AT_ADDRESS', 'AT_SITE_BOUNDARY'"
-				"statusValidationRequired": true // "indicates if the fiberStatus needs manual validation to assure availability"
+				"statusValidationRequired": true // "Indicates if the fiberStatus needs manual validation to assure availability."
 			}
 		],
  		"relatedPointIds": [
@@ -70,15 +70,13 @@ Content-Type: application/json
 		"city" : "Stockholm",
 		"street": "Drottninggatan",
 		"number": "52",
-		"littera": "A",
-		"postalCode": "18273"
+		"littera": "A"
 	},
 	"toAddress": { 
 		"city" : "Stockholm",
 		"street": "Drottninggatan",
 		"number": "68",
-		"littera": "A",
-		"postalCode": "18273"
+		"littera": "A"
 	},
 	"redundancy": {
 		"type": "Full", /* "'Normal', 'Full'" */
@@ -117,7 +115,7 @@ Content-Type: application/json
 				"name": "Point2Point",
 				"status": "AVAILABLE",
 				"comment": "",
-				"items": [ /* "Will return empty array for now" */
+				"items": [ /* 'Items' is ambiguous and should be replaced with something more descriptive */
 					{
 						"name": "distance",
 						"value": "987"
@@ -127,7 +125,7 @@ Content-Type: application/json
 				"price": {
 					"oneTimeFee": 15100.0,
 					"monthlyFee": 1200.0,
-					"items": [ /* "Will return empty array for now" */
+					"items": [ 
 						{
 							"name": "Connection based on distance",
 							"parameters": [
@@ -219,21 +217,19 @@ Content-Type: application/json
 ```javascript
 {
 	"supplier": "STOKAB",
-	"productId": "98j35-f4fewf-fwef-f444", /* "e.g. 'Point2Point', 'Star'" */
+	"productId": "0d13c5e0-ce23-41a0-87b5-f480479fa71e", /* "e.g. 'Point2Point', 'Star'" */
 	"referenceId": "CH-12345", /* "client own reference for this inquiry, could be empty" */
 	"fromAddress": { /*"may be set to null if any product only requires one point (address). E.g. Point2Point"*/
 		"city" : "Stockholm",
 		"streetName": "Drottninggatan",
 		"streetNumber": "52",
-		"streetLittera": "A",
-		"postalCode": "12398"
+		"streetLittera": "A"
 	},
 	"toAddress": {
 		"city" : "Stockholm",
 		"streetName": "Drottninggatan",
 		"streetNumber": "68",
-		"streetLittera": "A",
-		"postalCode": "12383"
+		"streetLittera": "A"
 	},
 	"redundancy": {
 		"type": "Full", /* "'Normal', 'Full'" */
@@ -249,12 +245,12 @@ Content-Type: application/json
 		...
 	],
 	"subProducts": [
-		"35h34-3t-43b44-y",
-		"44hg4h-4hy4h4yh-h45yt4h"
+		"bb634e19-07c3-4d33-9dd8-8ee27dfa2f29", 
+		"12a63f10-24a9-4530-979c-964db4cfa9b8"
 	],
 	"contractPeriodMonths": 12,
-	"noOfFibers": 1, /* "number of wanted fiber pairs (or single fibers depending on product)" */
-	"asyncAnswerAllowed": true /* "if asychronous answer is ok (might result in an extra charge if manual)" */
+	"noOfFibers": 1, /* "Number of wanted fiber pairs (or single fibers depending on product)" */
+	"asyncAnswerAllowed": true /* "If asychronous answer is ok (might result in an extra charge if manual)" */
 }
 ```
 
@@ -268,24 +264,24 @@ Content-Type: application/json
 ```
 ```javascript
 {
-	"inquiryId": "ec4bc754-6a30-11e2-a585-4fc569183061", /* Incident number in CRM */
+	"inquiryId": "I982283", /* Incident-number in CRM. */
 	"referenceId": "CH-12345",
 	"status": {
 		"state": "WAIT_ASYNC_ANSWER", /* "'DONE_SUCCESS', 'DONE_FAILED', 'DONE_ASYNC_ANSWER_SUCCESS', 'DONE_ASYNC_ANSWER_FAILED'" */
 		"message": "",
 		"createDateTime": "2016-08-21T08:01:06.000Z",
-		"doneDateTime": "2016-08-22T10:15:01.000Z", /* "should be null if not yet done" */
+		"doneDateTime": "2016-08-22T10:15:01.000Z", /* "Should be null if not yet done." */
 	},
 	"supplier": "STOKAB",
 	"offerValidUntilDate": "2016-01-31",
-	"connectionId": "", /* "may be set to the identifier for the connection if that is already generated when inquiry is answered" */
-	"deliveryDurationDays": 20, /* "days from order to delivered connection" */
+	"connectionId": "", /* "May be set to the identifier for the connection if that is already generated when inquiry is answered." */
+	"deliveryDurationDays": 20, /* "Days from order to delivered connection." */
 	"product": {
-		"productId": "98s7gf-098sfg-09sug",
+		"productId": "bd16d8d5-c147-4490-8b7a-93193fce8fb3",
 		"name": "Point2Point",
 		"status": "AVAILABLE",
 		"comment": "",
-		"items": [ /* "Will return empty array for now" */
+		"items": [
 			{
 				"name": "distance",
 				"value": "987"
@@ -294,7 +290,7 @@ Content-Type: application/json
 		],
 		"subProducts": [
 		{
-			"productId": "87sagf-087sagf-098s7fg-9sg",
+			"productId": "5f3e0024-77aa-42df-9faf-2088d328975c",
 			"name": "awesomeProduct",
 			"price": {
 				"oneTimeFee": "1287.99",
@@ -373,18 +369,18 @@ Content-Type: application/json
 		"state": "DONE_ASYNC_ANSWER_SUCCESS",
 		"message": "",
 		"createDateTime": "2016-08-21T08:01:06.000Z",
-		"doneDateTime": "2016-08-22T10:15:01.000Z", /* "should be null if not yet done" */
+		"doneDateTime": "2016-08-22T10:15:01.000Z", /* "Should be null if not yet done." */
 	},
 	"supplier": "STOKAB",
 	"offerValidUntilDate": "2016-01-31",
 	"connectionId": "",
 	"deliveryDurationDays": 20,
 	"product": {
-		"productId": "97dsg-098sfg-09sfg-0i35g",
+		"productId": "141c78ce-acfa-4f77-aebc-1ab94327872a",
 		"name": "Point2Point",
 		"status": "AVAILABLE",
 		"comment": "",
-		"items": [ /* "Will return empty array for now" */
+		"items": [ 
 			{
 				"name": "distance",
 				"value": "1046"
@@ -393,7 +389,7 @@ Content-Type: application/json
 		],
 		"subProducts": [
 		{
-			"productId": "87sagf-087sagf-098s7fg-9sg",
+			"productId": "141c78ce-acfa-4f77-aebc-1ab94327872a",
 			"name": "awesomeProduct",
 			"price": {
 				"oneTimeFee": "1287.99",
@@ -405,7 +401,7 @@ Content-Type: application/json
 			"status": "OFFER",
 			"oneTimeFee": 15100.0,
 			"monthlyFee": 1500.0,
-			"items": [ /* "Will return empty array for now" */
+			"items": [ 
 				{
 					"name": "Connection based on distance",
 					"parameters": [
