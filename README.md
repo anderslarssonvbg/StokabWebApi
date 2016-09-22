@@ -290,14 +290,15 @@ Content-Type: application/json
 			...
 		],
 		"subProducts": [
-		{
-			"productId": "5f3e0024-77aa-42df-9faf-2088d328975c",
-			"name": "awesomeProduct",
-			"price": {
+			{
+				"productId": "5f3e0024-77aa-42df-9faf-2088d328975c",
+				"name": "awesomeProduct",
+				"price": {
 				"oneTimeFee": "1287.99",
 				"monthlyFee": "283.00"
-			}
-		}...
+				}
+			},
+			[...]
 		],
 		"price": {
 			"status": "ESTIMATED", /* "'ESTIMATED', 'OFFER'. Estimated price can be delivered in synchronous answer and then be overridden by an offer in an asynchronous answer" */
