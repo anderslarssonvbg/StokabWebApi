@@ -85,10 +85,14 @@ Content-Type: application/json
 	"customerType": "Commercial", /* "e.g. 'Commercial', 'Residential'" */
 	"serviceLevel": "Premium", /* "e.g. 'Base', 'Gold', 'Premium'" */
 	"products": ["All"], /* "e.g. 'All', 'Point2Point', 'Star'" */
-	"parameters": [ /* "Will not be implemented by Innofactor" */
+	"parameters": [ 
 		{
 			"name": "ConnectorType",
 			"value": "SC/APC"
+		},
+		{
+			"name": "NumberOfRooms",
+			"value": "10"
 		},
 		...
 	],
