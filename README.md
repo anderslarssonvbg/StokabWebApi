@@ -244,8 +244,17 @@ Content-Type: application/json
 		...
 	],
 	"subProducts": [
-		"bb634e19-07c3-4d33-9dd8-8ee27dfa2f29", 
-		"12a63f10-24a9-4530-979c-964db4cfa9b8"
+	{
+		"productId": "12345445435435",
+		"parameters": [
+		{
+			"name": "NoOfRooms",
+			"value": "10"
+		},
+	...
+		]
+	},
+	...
 	],
 	"contractPeriodMonths": 12,
 	"noOfFibers": 1, /* "Number of wanted fiber pairs (or single fibers depending on product)" */
