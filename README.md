@@ -231,22 +231,8 @@ Content-Type: application/json
 	"productId": "0d13c5e0-ce23-41a0-87b5-f480479fa71e", 
 	"productName": "Point2Point",
 	"referenceId": "CH-12345", /* "client own reference for this inquiry, could be empty" */
-	"fromPointId": "ABC123",
-	"fromAddress": {
-		"city" : "Stockholm",
-		"streetName": "Drottninggatan",
-		"streetNumber": "52",
-		"streetLittera": "A",
-		"zipCode": "11124"0
-	},
+	"fromPointId": "ABC123"
 	"toPointId": "ABC124",
-	"toAddress": {
-		"city" : "Stockholm",
-		"streetName": "Drottninggatan",
-		"streetNumber": "68",
-		"streetLittera": "A",
-		"zipCode": "11154"
-	},
 	"redundancy": {
 		"type": "Full", /* 'NoReduncancy', 'Normal'. (Full redundancy not availible from Stokab-api.) */
 		"toPointId": "CBA123"
@@ -552,7 +538,6 @@ Content-Type: application/json
 ```javascript
 {
 	"orderId": "fc6cd754-6a30-11e2-a585-4fc569185689",
-	"inquiryId": "ec4bc754-6a30-11e2-a585-4fc569183061",
 	"supplier": "STOKAB",
 	"product": "Point2Point",
 	"status": {
@@ -581,7 +566,6 @@ Content-Type: application/json
 ```javascript
 {
 	"orderId": "fc6cd754-6a30-11e2-a585-4fc569185689",
-	"inquiryId": "ec4bc754-6a30-11e2-a585-4fc569183061",
 	"supplier": "STOKAB",
 	"product": "Point2Point",
 	"status": {
