@@ -487,12 +487,38 @@ Content-Type: application/json
 	{
 		"inquiryId": "ec4bc754-6a30-11e2-a585-4fc569183061",
 		"state": "DONE_ASYNC_ANSWER_SUCCESS",
-		"message": ""
+		"message": "",
+		"toAddress": { 
+			"city" : "Stockholm",
+			"street": "Drottninggatan",
+			"number": "68",
+			"littera": "A",
+			"zipCode": "11244",
+			"comment": ""
+		},
+		"product": "Star",
+		"price": {
+			"oneTimeFee" : 15000,
+			"monthlyFee": 3000
+		}
 	},
 	{
 		"inquiryId": "fc4bc754-6a30-11e2-a585-4fc569183432",
 		"state": "DONE_ASYNC_ANSWER_FAILED",
-		"message": "An error occured"
+		"message": "An error occured",
+		"toAddress": { 
+			"city" : "Stockholm",
+			"street": "Drottninggatan",
+			"number": "68",
+			"littera": "A",
+			"zipCode": "11244",
+			"comment": ""
+		},
+		"product": "Star",
+		"price": {
+			"oneTimeFee" : 15000,
+			"monthlyFee": 3000
+		}
 	},
 	...
 ]
