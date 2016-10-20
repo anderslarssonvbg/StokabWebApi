@@ -680,8 +680,8 @@ Content-Type: application/json
 	{
 		"name": "ComHem",
 		"clientNumber": "9834",
-		"invoiceGroupid": "47193bdf-7855-499b-96a1-f9d387556a9e
-"
+		"invoiceGroupid": "47193bdf-7855-499b-96a1-f9d387556a9e"
+
 	},
 	...
 ]
