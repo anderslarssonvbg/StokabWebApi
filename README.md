@@ -273,7 +273,8 @@ Content-Type: application/json
 ```
 ```javascript
 {
-	"inquiryId": "I982283", /* Incident-number in CRM. */
+	"inquiryId": "47193bdf-7855-499b-96a1-f9d387556a9e",
+	"inquiryNumber": "SP-892383", /* Incident-number in CRM. */
 	"referenceId": "CH-12345",
 	"status": {
 		"state": "WAIT_ASYNC_ANSWER", /* "'DONE_SUCCESS', 'DONE_FAILED', 'DONE_ASYNC_ANSWER_SUCCESS', 'DONE_ASYNC_ANSWER_FAILED'" */
@@ -374,6 +375,7 @@ Content-Type: application/json
 ```javascript
 {
 	"inquiryId": "ec4bc754-6a30-11e2-a585-4fc569183061",
+	"inquiryNumber": "ST-9847598475", 
 	"referenceId": "CH-12345",
 	"status": {
 		"state": "DONE_ASYNC_ANSWER_SUCCESS",
@@ -486,6 +488,8 @@ Content-Type: application/json
 [
 	{
 		"inquiryId": "ec4bc754-6a30-11e2-a585-4fc569183061",
+		"inquiryNumber": "ST-9847598475", 
+		"referenceId": "CH-12345",
 		"state": "DONE_ASYNC_ANSWER_SUCCESS",
 		"message": "",
 		"toAddress": { 
@@ -564,6 +568,8 @@ Content-Type: application/json
 ```javascript
 {
 	"orderId": "fc6cd754-6a30-11e2-a585-4fc569185689",
+	"orderNumber": "ST-9847598475", 
+	"referenceId": "CH-12345",
 	"supplier": "STOKAB",
 	"product": "Point2Point",
 	"status": {
@@ -592,6 +598,8 @@ Content-Type: application/json
 ```javascript
 {
 	"orderId": "fc6cd754-6a30-11e2-a585-4fc569185689",
+	"orderNumber": "ST-9847598475", 
+	"referenceId": "CH-12345",
 	"supplier": "STOKAB",
 	"product": "Point2Point",
 	"status": {
@@ -649,11 +657,15 @@ Content-Type: application/json
 [
 	{
 		"orderId": "fc6cd754-6a30-11e2-a585-4fc569185689",
+		"orderNumber": "ST-9847598475", 
+		"referenceId": "CH-12345",
 		"state": "DELIVERED",
 		"message": ""
 	},
 	{
 		"orderId": "ab6cd754-6a30-11e2-a585-4fc569185643",
+		"orderNumber": "ST-9847598475", 
+		"referenceId": "CH-12345",
 		"state": "REJECTED",
 		"message": "The order couldn't be delivered because of no available fibers"
 	},
