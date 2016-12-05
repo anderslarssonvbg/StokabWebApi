@@ -233,6 +233,7 @@ Content-Type: application/json
 	"referenceId": "CH-12345", /* "client own reference for this inquiry, could be empty" */
 	"fromPointId": "ABC123"
 	"toPointId": "ABC124",
+	"comment": "Lorem ipsum", /* When comment is present the request will be async */
 	"redundancy": {
 		"type": "Full", /* 'NoReduncancy', 'Normal'. (Full redundancy not availible from Stokab-api.) */
 		"toPointId": "CBA123"
